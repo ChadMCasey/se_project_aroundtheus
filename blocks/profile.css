@@ -20,7 +20,7 @@
 .profile__name {
   margin-top: 0px;
   margin-bottom: 7px;
-  text-wrap: nowrap;
+  white-space: nowrap;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
   font-size: 42px;
