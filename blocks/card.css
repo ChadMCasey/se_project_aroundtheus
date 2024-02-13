@@ -1,0 +1,47 @@
+.card {
+  height: 361px;
+  color: #000;
+}
+
+.card__img {
+  display: block;
+  width: 282px;
+  height: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card__description {
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__location {
+  margin: 0px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card__heart {
+  width: 21px;
+  height: 18px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/heart.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: background-image 0.2s ease-in-out;
+}
+
+.card__heart:hover {
+  background-image: url("../images/heart-hover.svg");
+}
