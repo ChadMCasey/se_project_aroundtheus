@@ -25,4 +25,4 @@ https://chadmcasey.github.io/se_project_aroundtheus/
 
 **Link to The Project Overview!**
 
-![A link to a project overview video](https://drive.google.com/file/d/1WVgG8zwiUu_s00IV-1Zedosyq3fQbPkQ/view?usp=sharing)
+https://drive.google.com/file/d/1WVgG8zwiUu_s00IV-1Zedosyq3fQbPkQ/view?usp=sharing
