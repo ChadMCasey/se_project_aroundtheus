@@ -11,3 +11,9 @@
   margin: 0px;
   list-style-type: none;
 }
+
+@media screen and (width <= 633px) {
+  .cards {
+    padding-top: 36px;
+  }
+}
