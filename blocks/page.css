@@ -1,13 +1,13 @@
 .page {
   background-color: black;
   color: #fff;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .page__content {
   max-width: 880px;
   width: calc(100% - 38px);
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 @media screen and (width <= 633px) {

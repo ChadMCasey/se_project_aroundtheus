@@ -11,12 +11,3 @@
   margin: 0px;
   list-style-type: none;
 }
-
-@media screen and (width <= 633px) {
-  .cards {
-    padding-top: 36px;
-    width: calc(100% - 38px);
-    margin-left: auto;
-    margin-right: auto;
-  }
-}

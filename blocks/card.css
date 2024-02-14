@@ -1,27 +1,26 @@
 .card {
-  height: 361px;
   color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  object-fit: contain;
+  object-position: center;
 }
 
 .card__img {
   display: block;
   width: 282px;
   height: 282px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .card__description {
   background-color: #fff;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   padding: 25px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card__location {
+.card__title {
   margin: 0px;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 900;
@@ -29,6 +28,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: calc(100% - 21px);
 }
 
 .card__heart {
@@ -39,9 +39,10 @@
   background-image: url("../images/heart.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  transition: background-image 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .card__heart:hover {
-  background-image: url("../images/heart-hover.svg");
+  opacity: 0.5;
 }
