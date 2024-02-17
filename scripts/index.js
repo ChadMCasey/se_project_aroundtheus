@@ -1,23 +1,23 @@
 // modal
-let modal = document.querySelector(".modal");
-let modalForm = modal.querySelector(".modal__form");
-let modalCloseButton = modal.querySelector(".modal__close-btn");
-let modalSaveButton = modalForm.querySelector(".modal__save-btn");
-let modalInputName = modalForm.querySelector(".modal__input_type_name");
-let modalInputDescription = modalForm.querySelector(
+const modal = document.querySelector(".modal");
+const modalForm = document.forms["modal-form"];
+const modalCloseButton = modal.querySelector(".modal__close-btn");
+const modalSaveButton = modalForm.querySelector(".modal__save-btn");
+const modalInputName = modalForm.querySelector(".modal__input_type_name");
+const modalInputDescription = modalForm.querySelector(
   ".modal__input_type_description"
 );
 
 // profile
-let profile = document.querySelector(".profile");
-let profileEditButton = profile.querySelector(".profile__edit-button");
-let profileName = profile.querySelector(".profile__name");
-let profileDescription = document.querySelector(".profile__avocation");
+const profile = document.querySelector(".profile");
+const profileEditButton = profile.querySelector(".profile__edit-button");
+const profileName = profile.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__avocation");
 
 // cards list
-let cardsList = document.querySelector(".cards__list");
+const cardsList = document.querySelector(".cards__list");
 
-const initialCards = [
+let initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -55,24 +55,24 @@ function openModal(e) {
   modalInputDescription.value = profileDescription.textContent;
 }
 function submitModal(e) {
-  e.preventDefault();
   profileName.textContent = modalInputName.value;
   profileDescription.textContent = modalInputDescription.value;
-  modal.classList.remove("modal_opened");
+  exitModal(e);
 }
 
 function getCardElement(data) {
-  let cardTemplate = document.querySelector("#card-template").content;
-  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  cardElement.querySelector(".card__img").src = data.link;
-  cardElement.querySelector(".card__img").alt = data.name;
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__img");
   cardElement.querySelector(".card__title").textContent = data.name;
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
   return cardElement;
 }
 
 modalCloseButton.addEventListener("click", exitModal);
 profileEditButton.addEventListener("click", openModal);
-modal.addEventListener("submit", submitModal);
+modalForm.addEventListener("submit", submitModal);
 
 initialCards.forEach((cardObj) => {
   cardsList.append(getCardElement(cardObj));
