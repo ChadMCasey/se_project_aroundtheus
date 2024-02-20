@@ -71,10 +71,52 @@
       </div>
     </div>
 
+    <!-- card add modal -->
+    <div class="add-modal">
+      <div class="add-modal__container">
+        <h2 class="add-modal__header">New Place</h2>
+        <form class="add-form">
+          <fieldset class="add-form__fieldset">
+            <input
+              type="text"
+              name="location"
+              class="add-form__input add-form__input-title"
+              placeholder="Title"
+            />
+            <input
+              type="url"
+              name="imageURL"
+              class="add-form__input add-form__input-link"
+              placeholder="Image link"
+            />
+          </fieldset>
+          <button type="submit" class="add-form__button-create">Create</button>
+          <button type="button" class="add-form__button-close"></button>
+        </form>
+      </div>
+    </div>
+
+    <div class="image-modal">
+      <div class="image-modal__container">
+        <!-- default values for this image so that html validator does not flag this img
+        as not having a src/alt defined. -->
+        <img
+          src="./images/logo.svg"
+          alt="default_alt"
+          class="image-modal__img"
+        />
+        <button type="button" class="image-modal__button-close"></button>
+        <h3 class="image-modal__title"></h3>
+      </div>
+    </div>
+
     <!-- Card Template -->
     <template id="card-template">
       <li class="card">
-        <img class="card__img" />
+        <!-- default values for this image so that html validator does not flag this img
+        as not having a src/alt defined. -->
+        <img src="./images/logo.svg" alt="default_alt" class="card__img" />
+        <img class="card__trash" />
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__heart"></button>

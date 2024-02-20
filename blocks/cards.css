@@ -15,5 +15,7 @@
 @media screen and (width <= 633px) {
   .cards {
     padding-top: 36px;
+    max-width: calc(100% - 38px);
+    margin: auto;
   }
 }

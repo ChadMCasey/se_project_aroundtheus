@@ -2,14 +2,30 @@
   color: #000;
   border-radius: 10px;
   overflow: hidden;
-  object-fit: contain;
-  object-position: center;
+
+  position: relative;
+  max-height: 400px;
 }
 
 .card__img {
   display: block;
+  object-fit: cover;
+  object-position: center;
   width: 282px;
   height: 282px;
+}
+
+.card__trash {
+  /* setting the background image in js made it such that
+  it would render on top of the main card image.  */
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  transition: opacity 0.15s ease-in;
+}
+
+.card__trash:hover {
+  opacity: 0.6;
 }
 
 .card__description {
@@ -41,6 +57,10 @@
   background-size: contain;
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.card__heart_dark {
+  background-image: url("../images/heart-liked.svg");
 }
 
 .card__heart:hover {

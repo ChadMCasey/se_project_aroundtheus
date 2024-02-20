@@ -1,18 +1,26 @@
 .modal {
   position: fixed;
+  display: flex;
+  place-content: center;
+  place-items: center;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  display: none;
+  padding: 19px;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.3s, opacity 0.5s linear;
 }
 
 .modal_opened {
   display: flex;
   place-content: center;
   padding: 19px;
+
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -57,7 +65,6 @@
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
-  padding-bottom: 13px;
   text-align: start;
 }
 
@@ -82,20 +89,19 @@
   position: absolute;
   top: -40px;
   right: -40px;
-  transform: rotate(90deg);
   background-image: url("../images/close-icon.svg");
   background-color: transparent;
   border: none;
   width: 32px;
   height: 32px;
-  transition: opacity 0.15s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 
 .modal__close-btn:hover {
   opacity: 0.6;
 }
 
-@media screen and (width <= 932px) {
+@media screen and (width <= 633px) {
   .modal__container {
     padding: 25px 22px;
   }

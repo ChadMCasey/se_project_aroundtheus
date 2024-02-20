@@ -1,0 +1,129 @@
+.add-modal {
+  position: fixed;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  padding: 19px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.5s linear;
+}
+
+.add-modal_visible {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  visibility: visible;
+  opacity: 1;
+}
+
+.add-modal__container {
+  flex-basis: 430px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 10px;
+  padding: 34px 36px 36px 36px;
+  position: relative;
+}
+
+.add-modal__header {
+  margin: 0px 0px 54px 0px;
+  font-family: "Inter", Arial, Helvetica;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: calc(29 / 24);
+}
+
+.add-form__fieldset {
+  border: none;
+  margin: 0px 0px 48px 0px;
+  padding: 0px;
+}
+
+.add-form__input {
+  display: block;
+  width: 100%;
+  height: 27px;
+  border: none;
+  outline: none;
+  margin-bottom: 30px;
+  padding: 0px 0px 10px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+}
+
+.add-form__input:last-child {
+  margin-bottom: 0px;
+}
+
+.add-form__input::placeholder {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 0px;
+}
+
+.add-form__button-create {
+  height: 50px;
+  width: 100%;
+  border: none;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  font-weight: 400;
+  border-radius: 2px;
+  transition: opacity 0.15s ease-in;
+  padding: 0px;
+}
+
+.add-form__button-create:hover {
+  opacity: 0.8;
+}
+
+.add-form__button-close {
+  background: no-repeat center url(../images/close-icon.svg);
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  transition: opacity 0.15s ease-in;
+}
+
+.add-form__button-close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (width <= 633px) {
+  .add-modal__container {
+    padding: 25px 22px;
+  }
+  .add-modal__header {
+    margin-bottom: 76px;
+  }
+  .add-modal__header {
+    font-size: 18px;
+  }
+  .add-form__button-close {
+    top: calc(-40px + -13px);
+    right: 3px;
+    height: 26px;
+    width: 26px;
+  }
+  .add-form__input {
+    padding-bottom: 6px;
+  }
+  .add-form__button-create {
+    font-size: 14px;
+  }
+}
