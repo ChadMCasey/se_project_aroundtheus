@@ -93,16 +93,18 @@ function openImageModal(e) {
 }
 
 function submitModal(e) {
+  if (modalInputName.value === "" || modalInputDescription.value === "") {
+    exitModal(e); // no name or description, simply return;
+    return;
+  }
   profileName.textContent = modalInputName.value;
   profileDescription.textContent = modalInputDescription.value;
   exitModal(e);
 }
 
 function submitAddModal(e) {
-  // add an image w/ no name or link,
-  // simply exit the modal without making a card and return.
   if (addModalTitleInput.value === "" || addModalLinkInput.value === "") {
-    exitAddModal(e);
+    exitAddModal(e); // no image or title, simply return;
     return;
   }
   let cardElement = getCardElement({
@@ -138,7 +140,7 @@ profileEditButton.addEventListener("click", openEditModal);
 modalForm.addEventListener("submit", submitModal);
 profileAddButton.addEventListener("click", openAddModal);
 modal.addEventListener("click", (e) => {
-  // clicks outside the edit profile modal
+  // allow user to close model by clicking outside the form
   if (e.target === modal) exitModal(e);
 });
 
@@ -146,14 +148,14 @@ modal.addEventListener("click", (e) => {
 addModalCloseButton.addEventListener("click", exitAddModal);
 addModalForm.addEventListener("submit", submitAddModal);
 addModal.addEventListener("click", (e) => {
-  // clicks outside the add image modal
+  // allow user to close model by clicking outside the form
   if (e.target === addModal) exitAddModal(e);
 });
 
 // image modal
 imageModalClose.addEventListener("click", exitImageModal);
 imageModal.addEventListener("click", (e) => {
-  // clicks outside the add image modal
+  // allow user to close model by clicking outside the image
   if (e.target === imageModal) exitImageModal(e);
 });
 
