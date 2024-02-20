@@ -99,8 +99,8 @@ function submitModal(e) {
 }
 
 function submitAddModal(e) {
-  // if someone tries to add an image with no name or link, simply exit the modal
-  // without making a card and return.
+  // add an image w/ no name or link,
+  // simply exit the modal without making a card and return.
   if (addModalTitleInput.value === "" || addModalLinkInput.value === "") {
     exitAddModal(e);
     return;
@@ -122,7 +122,6 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
   cardImage.alt = data.name;
-  cardTrash.src = "../images/trash.svg"; // render after (on top of) the card image
   cardHeart.addEventListener("click", () => {
     cardHeart.classList.toggle("card__heart_dark");
   });
@@ -138,13 +137,25 @@ modalCloseButton.addEventListener("click", exitModal);
 profileEditButton.addEventListener("click", openEditModal);
 modalForm.addEventListener("submit", submitModal);
 profileAddButton.addEventListener("click", openAddModal);
+modal.addEventListener("click", (e) => {
+  // clicks outside the edit profile modal
+  if (e.target === modal) exitModal(e);
+});
 
 // modal add
 addModalCloseButton.addEventListener("click", exitAddModal);
 addModalForm.addEventListener("submit", submitAddModal);
+addModal.addEventListener("click", (e) => {
+  // clicks outside the add image modal
+  if (e.target === addModal) exitAddModal(e);
+});
 
 // image modal
 imageModalClose.addEventListener("click", exitImageModal);
+imageModal.addEventListener("click", (e) => {
+  // clicks outside the add image modal
+  if (e.target === imageModal) exitImageModal(e);
+});
 
 // card
 initialCards.forEach((cardObj) => {
