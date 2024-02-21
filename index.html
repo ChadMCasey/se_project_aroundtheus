@@ -45,69 +45,70 @@
       </div>
     </div>
 
-    <div class="modal overlay profile-modal">
-      <div class="modal__container profile-modal__container">
-        <h2 class="modal__header profile-modal__heading">Edit Profile</h2>
+    <div class="modal profile-modal">
+      <div class="modal__container">
+        <h2 class="modal__header">Edit Profile</h2>
 
-        <form id="profile-modal-form" class="form profile-modal__form">
-          <fieldset class="form__fieldset profile-modal__fieldset">
+        <form id="profile-form" class="form profile-form">
+          <fieldset class="form__fieldset">
             <input
               type="text"
-              class="input profile-modal__input profile-modal__input_type_name"
+              class="form__input profile-form__input_name"
               id="title"
               placeholder="Username"
             />
             <input
               type="text"
-              class="input profile-modal__input profile-modal__input_type_description"
+              class="form__input profile-form__input_description"
               name="description"
               placeholder="Description"
             />
           </fieldset>
-
-          <button type="submit" class="submit profile-modal__save-btn">
+          <button type="submit" class="form__submit profile-form__save-btn">
             Save
           </button>
-          <button type="button" class="cross profile-modal__close-btn"></button>
+          <button type="button" class="form__close"></button>
         </form>
       </div>
     </div>
 
-    <!-- card add modal -->
-    <div class="modal overlay add-modal">
-      <div class="modal__container add-modal__container">
-        <h2 class="modal__header add-modal__header">New Place</h2>
-        <form class="form" id="add-form">
-          <fieldset class="form__fieldset add-form__fieldset">
+    <div class="modal add-modal">
+      <div class="modal__container">
+        <h2 class="modal__header">New Place</h2>
+        <form class="form add-form" id="add-form">
+          <fieldset class="form__fieldset">
             <input
               type="text"
               name="location"
-              class="input add-form__input add-form__input-title"
+              class="form__input add-form__input-title"
               placeholder="Title"
             />
             <input
               type="url"
               name="imageURL"
-              class="input add-form__input add-form__input-link"
+              class="form__input add-form__input-link"
               placeholder="Image link"
             />
           </fieldset>
-          <button type="submit" class="submit add-form__button-create">
+          <button type="submit" class="form__submit add-form__button-create">
             Create
           </button>
-          <button type="button" class="cross add-form__button-close"></button>
+          <button type="button" class="form__close"></button>
         </form>
       </div>
     </div>
 
-    <div class="modal overlay image-modal">
+    <div class="modal image-modal">
       <div class="image-modal__container">
         <img
           src="./images/logo.svg"
           alt="default_alt"
           class="image-modal__img"
         />
-        <button type="button" class="cross image-modal__button-close"></button>
+        <button
+          type="button"
+          class="form__close image-modal__button-close"
+        ></button>
         <h3 class="image-modal__title"></h3>
       </div>
     </div>

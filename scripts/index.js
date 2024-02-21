@@ -1,15 +1,13 @@
 // edit modal
 const profileModal = document.querySelector(".profile-modal");
-const profileForm = document.forms["profile-modal-form"];
-const profileCloseButton = profileModal.querySelector(
-  ".profile-modal__close-btn"
-);
-const profileSaveButton = profileForm.querySelector(".profile-modal__save-btn");
+const profileForm = document.forms["profile-form"];
+
+const profileSaveButton = profileForm.querySelector(".profile-form__save-btn");
 const profileModalInputName = profileForm.querySelector(
-  ".profile-modal__input_type_name"
+  ".profile-form__input_name"
 );
 const profileModalInputDescription = profileForm.querySelector(
-  ".profile-modal__input_type_description"
+  ".profile-form__input_description"
 );
 
 // profile
@@ -21,11 +19,13 @@ const profileAddButton = document.querySelector(".profile__add-button");
 
 // add modal
 const addModal = document.querySelector(".add-modal");
-const addModalCloseButton = addModal.querySelector(".add-form__button-close");
-const addModalCreateButton = addModal.querySelector(".add-form__button-create");
-const addModalTitleInput = addModal.querySelector(".add-form__input-title");
-const addModalLinkInput = addModal.querySelector(".add-form__input-link");
 const addModalForm = document.forms["add-form"];
+
+const addModalCreateButton = addModalForm.querySelector(
+  ".add-form__button-create"
+);
+const addModalTitleInput = addModalForm.querySelector(".add-form__input-title");
+const addModalLinkInput = addModalForm.querySelector(".add-form__input-link");
 
 // cards
 const cardsList = document.querySelector(".cards__list");
@@ -34,7 +34,6 @@ const cardTemplate = document.querySelector("#card-template").content;
 // images modal
 const imageModal = document.querySelector(".image-modal");
 const imageModalImg = imageModal.querySelector(".image-modal__img");
-const imageModalClose = imageModal.querySelector(".image-modal__button-close");
 const imageModalTitle = imageModal.querySelector(".image-modal__title");
 
 // all modals / popups
@@ -68,7 +67,6 @@ const initialCards = [
 ];
 
 function closePopup(popup) {
-  console.log(popup);
   popup.classList.remove("modal_opened");
 }
 
@@ -153,7 +151,7 @@ modals.forEach((modal) => {
     if (e.target.classList.contains("modal_opened")) {
       closePopup(modal);
     }
-    if (e.target.classList.contains("cross")) {
+    if (e.target.classList.contains("form__close")) {
       closePopup(modal);
     }
   });

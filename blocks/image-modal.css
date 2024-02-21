@@ -17,13 +17,6 @@
   color: white;
 }
 
-.image-modal__button-close {
-  width: 40px;
-  height: 40px;
-  top: -44px;
-  right: -44px;
-}
-
 @media screen and (width <= 633px) {
   .image-modal__button-close {
     height: 30px;
