@@ -45,67 +45,69 @@
       </div>
     </div>
 
-    <div class="modal">
-      <div class="modal__container">
-        <h2 class="modal__heading">Edit Profile</h2>
+    <div class="modal overlay profile-modal">
+      <div class="modal__container profile-modal__container">
+        <h2 class="modal__header profile-modal__heading">Edit Profile</h2>
 
-        <form id="modal-form" class="modal__form">
-          <fieldset class="modal__fieldset">
+        <form id="profile-modal-form" class="form profile-modal__form">
+          <fieldset class="form__fieldset profile-modal__fieldset">
             <input
               type="text"
-              class="modal__input modal__input_type_name"
+              class="input profile-modal__input profile-modal__input_type_name"
               id="title"
               placeholder="Username"
             />
             <input
               type="text"
-              class="modal__input modal__input_type_description"
+              class="input profile-modal__input profile-modal__input_type_description"
               name="description"
               placeholder="Description"
             />
           </fieldset>
 
-          <button type="submit" class="modal__save-btn">Save</button>
-          <button type="button" class="modal__close-btn"></button>
+          <button type="submit" class="submit profile-modal__save-btn">
+            Save
+          </button>
+          <button type="button" class="cross profile-modal__close-btn"></button>
         </form>
       </div>
     </div>
 
     <!-- card add modal -->
-    <div class="add-modal">
-      <div class="add-modal__container">
-        <h2 class="add-modal__header">New Place</h2>
-        <form class="add-form">
-          <fieldset class="add-form__fieldset">
+    <div class="modal overlay add-modal">
+      <div class="modal__container add-modal__container">
+        <h2 class="modal__header add-modal__header">New Place</h2>
+        <form class="form" id="add-form">
+          <fieldset class="form__fieldset add-form__fieldset">
             <input
               type="text"
               name="location"
-              class="add-form__input add-form__input-title"
+              class="input add-form__input add-form__input-title"
               placeholder="Title"
             />
             <input
               type="url"
               name="imageURL"
-              class="add-form__input add-form__input-link"
+              class="input add-form__input add-form__input-link"
               placeholder="Image link"
             />
           </fieldset>
-          <button type="submit" class="add-form__button-create">Create</button>
-          <button type="button" class="add-form__button-close"></button>
+          <button type="submit" class="submit add-form__button-create">
+            Create
+          </button>
+          <button type="button" class="cross add-form__button-close"></button>
         </form>
       </div>
     </div>
 
-    <div class="image-modal">
+    <div class="modal overlay image-modal">
       <div class="image-modal__container">
-        <!-- default values for this image so that html validator does not flag this img
-        as not having a src/alt defined. -->
         <img
           src="./images/logo.svg"
           alt="default_alt"
           class="image-modal__img"
         />
-        <button type="button" class="image-modal__button-close"></button>
+        <button type="button" class="cross image-modal__button-close"></button>
         <h3 class="image-modal__title"></h3>
       </div>
     </div>
@@ -113,8 +115,6 @@
     <!-- Card Template -->
     <template id="card-template">
       <li class="card">
-        <!-- default values for this image so that html validator does not flag this img
-        as not having a src/alt defined. -->
         <img src="./images/logo.svg" alt="default_alt" class="card__img" />
         <img src="./images/trash.svg" class="card__trash" />
         <div class="card__description">

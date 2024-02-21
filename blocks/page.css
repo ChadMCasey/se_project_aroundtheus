@@ -2,6 +2,7 @@
   background-color: black;
   color: #fff;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .page__content {

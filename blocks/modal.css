@@ -1,123 +1,32 @@
-.modal {
-  position: fixed;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 19px;
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility 0.3s, opacity 0.5s linear;
-}
+/* common modal properties */
 
 .modal_opened {
   display: flex;
   place-content: center;
-  padding: 19px;
-
   visibility: visible;
   opacity: 1;
 }
 
+.modal__header {
+  margin: 0px 0px 54px 0px;
+  font-family: "Inter", Arial, Helvetica;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: calc(29 / 24);
+}
+
 .modal__container {
-  background-color: white;
-  padding: 34px 36px 36px 36px;
-  align-self: center;
   flex-basis: 430px;
+  box-sizing: border-box;
+  background-color: white;
   border-radius: 10px;
+  padding: 34px 36px 36px 36px;
   position: relative;
 }
 
-.modal__heading {
-  margin: 0px 0px 54px 0px;
-  font-size: 24px;
-  font-family: "Inter", Arial, sans-serif;
-  font-weight: bold;
-}
-
-.modal__fieldset {
-  border: none;
-  padding: 0px;
-  margin: 0px 0px 48px 0px;
-}
-
-.modal__input {
-  display: block;
-  width: 100%;
-  height: 27px;
-  padding: 0px 0px 13px 0px;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-family: "inter", Arial, sans-serif;
-  font-size: 14px;
-}
-
-.modal__input:first-child {
-  margin-bottom: 30px;
-}
-
-.modal__input::placeholder {
-  font-family: "Inter", Arial, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  text-align: start;
-}
-
-.modal__save-btn {
-  display: block;
-  border: none;
-  background-color: black;
-  color: white;
-  width: 100%;
-  border-radius: 2px;
-  height: 50px;
-  font-size: 18px;
-  font-family: "inter", Arial, sans-serif;
-  transition: opacity 0.15s ease-in;
-}
-
-.modal__save-btn:hover {
-  opacity: 0.8;
-}
-
-.modal__close-btn {
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  background-image: url("../images/close-icon.svg");
-  background-color: transparent;
-  border: none;
-  width: 32px;
-  height: 32px;
-  transition: opacity 0.3s ease-in;
-}
-
-.modal__close-btn:hover {
-  opacity: 0.6;
-}
-
 @media screen and (width <= 633px) {
-  .modal__container {
-    padding: 25px 22px;
-  }
-  .modal__heading {
+  .modal__header {
     font-size: 18px;
     margin-bottom: 75px;
-  }
-  .modal__fieldset {
-    margin-bottom: 45px;
-  }
-  .modal__save-btn {
-    height: 46px;
-    font-size: 14px;
-  }
-  .modal__close-btn {
-    top: -53px;
-    right: 5px;
   }
 }

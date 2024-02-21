@@ -2,10 +2,16 @@
 @import url("../vendor/fonts.css");
 @import url("../blocks/page.css");
 @import url("../blocks/header.css");
+@import url("../blocks/overlay.css");
 @import url("../blocks/profile.css");
 @import url("../blocks/cards.css");
 @import url("../blocks/card.css");
 @import url("../blocks/footer.css");
 @import url("../blocks/modal.css");
+@import url("../blocks/profile-modal.css");
 @import url("../blocks/add-modal.css");
 @import url("../blocks/image-modal.css");
+@import url("../blocks/form.css");
+@import url("../blocks/input.css");
+@import url("../blocks/submit.css");
+@import url("../blocks/cross.css");

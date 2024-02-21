@@ -1,11 +1,15 @@
 // edit modal
-const modal = document.querySelector(".modal");
-const modalForm = document.forms["modal-form"];
-const modalCloseButton = modal.querySelector(".modal__close-btn");
-const modalSaveButton = modalForm.querySelector(".modal__save-btn");
-const modalInputName = modalForm.querySelector(".modal__input_type_name");
-const modalInputDescription = modalForm.querySelector(
-  ".modal__input_type_description"
+const profileModal = document.querySelector(".profile-modal");
+const profileForm = document.forms["profile-modal-form"];
+const profileCloseButton = profileModal.querySelector(
+  ".profile-modal__close-btn"
+);
+const profileSaveButton = profileForm.querySelector(".profile-modal__save-btn");
+const profileModalInputName = profileForm.querySelector(
+  ".profile-modal__input_type_name"
+);
+const profileModalInputDescription = profileForm.querySelector(
+  ".profile-modal__input_type_description"
 );
 
 // profile
@@ -17,12 +21,11 @@ const profileAddButton = document.querySelector(".profile__add-button");
 
 // add modal
 const addModal = document.querySelector(".add-modal");
-const addForm = document.forms["add-form"];
 const addModalCloseButton = addModal.querySelector(".add-form__button-close");
 const addModalCreateButton = addModal.querySelector(".add-form__button-create");
 const addModalTitleInput = addModal.querySelector(".add-form__input-title");
 const addModalLinkInput = addModal.querySelector(".add-form__input-link");
-const addModalForm = addModal.querySelector(".add-form");
+const addModalForm = document.forms["add-form"];
 
 // cards
 const cardsList = document.querySelector(".cards__list");
@@ -34,7 +37,10 @@ const imageModalImg = imageModal.querySelector(".image-modal__img");
 const imageModalClose = imageModal.querySelector(".image-modal__button-close");
 const imageModalTitle = imageModal.querySelector(".image-modal__title");
 
-let initialCards = [
+// all modals / popups
+const modals = document.querySelectorAll(".modal");
+
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -61,58 +67,60 @@ let initialCards = [
   },
 ];
 
-function exitModal(e) {
-  e.preventDefault();
-  modal.classList.remove("modal_opened");
+function closePopup(popup) {
+  console.log(popup);
+  popup.classList.remove("modal_opened");
 }
 
-function exitAddModal(e) {
-  e.preventDefault();
-  addModal.classList.remove("add-modal_visible");
-}
-
-function exitImageModal(e) {
-  imageModal.classList.remove("image-modal_opened");
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
 }
 
 function openEditModal(e) {
-  modal.classList.add("modal_opened");
-  modalInputName.value = profileName.textContent;
-  modalInputDescription.value = profileDescription.textContent;
+  openPopup(profileModal);
+  profileModalInputName.value = profileName.textContent;
+  profileModalInputDescription.value = profileDescription.textContent;
 }
 
 function openAddModal(e) {
-  addModal.classList.add("add-modal_visible");
+  openPopup(addModal);
 }
 
 function openImageModal(e) {
-  imageModal.classList.add("image-modal_opened");
+  openPopup(imageModal);
   imageModalImg.src = "";
   imageModalImg.src = e.target.src;
+  imageModalImg.alt = e.target.alt;
   imageModalTitle.textContent = e.target.alt;
 }
 
-function submitModal(e) {
-  if (modalInputName.value === "" || modalInputDescription.value === "") {
-    exitModal(e); // no name or description, simply return;
+function handleProfileFormSubmit(e) {
+  e.preventDefault();
+  if (
+    profileModalInputName.value === "" ||
+    profileModalInputDescription.value === ""
+  ) {
+    closePopup(profileModal);
     return;
   }
-  profileName.textContent = modalInputName.value;
-  profileDescription.textContent = modalInputDescription.value;
-  exitModal(e);
+  profileName.textContent = profileModalInputName.value;
+  profileDescription.textContent = profileModalInputDescription.value;
+  closePopup(profileModal);
 }
 
 function submitAddModal(e) {
+  e.preventDefault();
   if (addModalTitleInput.value === "" || addModalLinkInput.value === "") {
-    exitAddModal(e); // no image or title, simply return;
+    closePopup(addModal);
     return;
   }
-  let cardElement = getCardElement({
+  const cardElement = getCardElement({
     name: addModalTitleInput.value,
     link: addModalLinkInput.value,
   });
   cardsList.prepend(cardElement);
-  exitAddModal(e);
+  e.target.reset();
+  closePopup(addModal);
 }
 
 function getCardElement(data) {
@@ -135,29 +143,23 @@ function getCardElement(data) {
 }
 
 // modal edit
-modalCloseButton.addEventListener("click", exitModal);
+
 profileEditButton.addEventListener("click", openEditModal);
-modalForm.addEventListener("submit", submitModal);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 profileAddButton.addEventListener("click", openAddModal);
-modal.addEventListener("click", (e) => {
-  // allow user to close model by clicking outside the form
-  if (e.target === modal) exitModal(e);
+
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (e) => {
+    if (e.target.classList.contains("modal_opened")) {
+      closePopup(modal);
+    }
+    if (e.target.classList.contains("cross")) {
+      closePopup(modal);
+    }
+  });
 });
 
-// modal add
-addModalCloseButton.addEventListener("click", exitAddModal);
 addModalForm.addEventListener("submit", submitAddModal);
-addModal.addEventListener("click", (e) => {
-  // allow user to close model by clicking outside the form
-  if (e.target === addModal) exitAddModal(e);
-});
-
-// image modal
-imageModalClose.addEventListener("click", exitImageModal);
-imageModal.addEventListener("click", (e) => {
-  // allow user to close model by clicking outside the image
-  if (e.target === imageModal) exitImageModal(e);
-});
 
 // card
 initialCards.forEach((cardObj) => {

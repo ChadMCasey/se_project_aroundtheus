@@ -1,28 +1,3 @@
-.image-modal {
-  position: fixed;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.3s, opacity 0.5s linear;
-}
-
-.image-modal_opened {
-  display: flex;
-  place-content: center;
-  place-items: center;
-
-  visibility: visible;
-  opacity: 1;
-}
-
 .image-modal__container {
   position: relative;
 }
@@ -43,27 +18,14 @@
 }
 
 .image-modal__button-close {
-  position: absolute;
-  background: no-repeat url("../images/close-icon.svg") center;
-  background-size: contain;
   width: 40px;
   height: 40px;
-  /* tweaked these so they accorded with the design better */
   top: -44px;
   right: -44px;
-  padding: 0px;
-  background-color: transparent;
-  border: none;
-  transition: opacity 0.15s ease-in;
-}
-
-.image-modal__button-close:hover {
-  opacity: 0.6;
 }
 
 @media screen and (width <= 633px) {
   .image-modal__button-close {
-    /* tweaked these so they accorded with the design better */
     height: 30px;
     width: 30px;
     top: -34px;

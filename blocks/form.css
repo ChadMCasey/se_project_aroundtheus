@@ -1,0 +1,6 @@
+/* common fieldset properties */
+.form__fieldset {
+  border: none;
+  padding: 0px;
+  margin: 0px 0px 48px 0px;
+}
