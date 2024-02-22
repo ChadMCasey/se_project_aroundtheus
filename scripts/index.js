@@ -127,7 +127,7 @@ function getCardElement(data) {
     cardHeart.classList.toggle("card__heart_dark");
   });
   cardTrash.addEventListener("click", () => {
-    cardTrash.closest(".card").remove();
+    cardElement.remove();
   });
   cardImage.addEventListener("click", openImageModal);
   return cardElement;
