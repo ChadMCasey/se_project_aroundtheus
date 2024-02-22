@@ -53,21 +53,20 @@
           <fieldset class="form__fieldset">
             <input
               type="text"
-              class="form__input profile-form__input_name"
+              class="form__input"
               id="title"
               placeholder="Username"
+              name="name"
             />
             <input
               type="text"
-              class="form__input profile-form__input_description"
+              class="form__input"
               name="description"
               placeholder="Description"
             />
           </fieldset>
-          <button type="submit" class="form__submit profile-form__save-btn">
-            Save
-          </button>
-          <button type="button" class="form__close"></button>
+          <button type="submit" class="form__submit">Save</button>
+          <button type="button" class="modal__close"></button>
         </form>
       </div>
     </div>
@@ -75,25 +74,23 @@
     <div class="modal add-modal">
       <div class="modal__container">
         <h2 class="modal__header">New Place</h2>
-        <form class="form add-form" id="add-form">
+        <form class="form" id="add-form">
           <fieldset class="form__fieldset">
             <input
               type="text"
               name="location"
-              class="form__input add-form__input-title"
+              class="form__input"
               placeholder="Title"
             />
             <input
               type="url"
               name="imageURL"
-              class="form__input add-form__input-link"
+              class="form__input"
               placeholder="Image link"
             />
           </fieldset>
-          <button type="submit" class="form__submit add-form__button-create">
-            Create
-          </button>
-          <button type="button" class="form__close"></button>
+          <button type="submit" class="form__submit">Create</button>
+          <button type="button" class="modal__close"></button>
         </form>
       </div>
     </div>
@@ -107,7 +104,7 @@
         />
         <button
           type="button"
-          class="form__close image-modal__button-close"
+          class="modal__close image-modal__button-close"
         ></button>
         <h3 class="image-modal__title"></h3>
       </div>

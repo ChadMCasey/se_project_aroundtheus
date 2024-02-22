@@ -45,31 +45,7 @@
   opacity: 0.8;
 }
 
-.form__close {
-  position: absolute;
-  background: no-repeat url("../images/close-icon.svg");
-  background-color: transparent;
-  background-position: center;
-  transition: opacity 0.3s ease-in;
-  border: none;
-  padding: 0px;
-  height: 40px;
-  width: 40px;
-  top: -40px;
-  right: -40px;
-}
-
-.form__close:hover {
-  opacity: 0.6;
-}
-
 @media screen and (width <= 633px) {
-  .form__close {
-    top: calc(-40px + -13px);
-    right: 5px;
-    height: 26px;
-    width: 26px;
-  }
   .form__input {
     padding-bottom: 6px;
   }

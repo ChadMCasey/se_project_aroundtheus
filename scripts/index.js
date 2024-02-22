@@ -2,13 +2,10 @@
 const profileModal = document.querySelector(".profile-modal");
 const profileForm = document.forms["profile-form"];
 
-const profileSaveButton = profileForm.querySelector(".profile-form__save-btn");
-const profileModalInputName = profileForm.querySelector(
-  ".profile-form__input_name"
-);
-const profileModalInputDescription = profileForm.querySelector(
-  ".profile-form__input_description"
-);
+const profileSaveButton = profileForm.querySelector(".form__submit");
+const profileModalInputName = profileForm.querySelector(`[name="name"]`);
+const profileModalInputDescription =
+  profileForm.querySelector(`[name="description"]`);
 
 // profile
 const profile = document.querySelector(".profile");
@@ -20,12 +17,8 @@ const profileAddButton = document.querySelector(".profile__add-button");
 // add modal
 const addModal = document.querySelector(".add-modal");
 const addModalForm = document.forms["add-form"];
-
-const addModalCreateButton = addModalForm.querySelector(
-  ".add-form__button-create"
-);
-const addModalTitleInput = addModalForm.querySelector(".add-form__input-title");
-const addModalLinkInput = addModalForm.querySelector(".add-form__input-link");
+const addModalTitleInput = addModalForm.querySelector("[name='location']");
+const addModalLinkInput = addModalForm.querySelector("[name='imageURL");
 
 // cards
 const cardsList = document.querySelector(".cards__list");
@@ -151,7 +144,7 @@ modals.forEach((modal) => {
     if (e.target.classList.contains("modal_opened")) {
       closePopup(modal);
     }
-    if (e.target.classList.contains("form__close")) {
+    if (e.target.classList.contains("modal__close")) {
       closePopup(modal);
     }
   });
