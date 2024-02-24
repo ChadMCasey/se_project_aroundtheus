@@ -64,6 +64,8 @@ function closePopup(popup) {
 }
 
 function openPopup(popup) {
+  // add our escape event listener
+  document.addEventListener("keydown", escapeModalClose);
   popup.classList.add("modal_opened");
 }
 
@@ -92,9 +94,7 @@ function handleProfileFormSubmit(e) {
 }
 
 function submitAddModal(e) {
-  addModal.querySelectorAll(".form__submit").forEach((submit) => {
-    submit.disabled = true;
-  });
+  addModal.querySelector(".form__submit").disabled = true;
   const cardElement = getCardElement({
     name: addModalTitleInput.value,
     link: addModalLinkInput.value,
@@ -123,11 +123,17 @@ function getCardElement(data) {
   return cardElement;
 }
 
-// modal edit
-
-profileEditButton.addEventListener("click", openEditModal);
-profileForm.addEventListener("submit", handleProfileFormSubmit);
-profileAddButton.addEventListener("click", openAddModal);
+const escapeModalClose = (e) => {
+  if (e.key === "Escape") {
+    modals.forEach((modal) => {
+      if (modal.classList.contains("modal_opened")) {
+        closePopup(modal);
+      }
+    });
+  }
+  // remove the escape event listener
+  document.removeEventListener("keydown", escapeModalClose);
+};
 
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (e) => {
@@ -138,23 +144,15 @@ modals.forEach((modal) => {
       closePopup(modal);
     }
   });
-  // close the modal
-});
-
-addModalForm.addEventListener("submit", submitAddModal);
-
-// close the modal on escape key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modals.forEach((modal) => {
-      if (modal.classList.contains("modal_opened")) {
-        modal.classList.remove("modal_opened");
-      }
-    });
-  }
 });
 
 // card
 initialCards.forEach((cardObj) => {
   cardsList.append(getCardElement(cardObj));
 });
+
+// modal edit
+profileEditButton.addEventListener("click", openEditModal);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+profileAddButton.addEventListener("click", openAddModal);
+addModalForm.addEventListener("submit", submitAddModal);
