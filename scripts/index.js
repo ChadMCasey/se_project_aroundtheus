@@ -128,11 +128,10 @@ const escapeModalClose = (e) => {
     modals.forEach((modal) => {
       if (modal.classList.contains("modal_opened")) {
         closePopup(modal);
+        document.removeEventListener("keydown", escapeModalClose);
       }
     });
   }
-  // remove the escape event listener
-  document.removeEventListener("keydown", escapeModalClose);
 };
 
 modals.forEach((modal) => {
