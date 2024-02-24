@@ -22,7 +22,7 @@
 .profile__name-edit-section {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .profile__name {

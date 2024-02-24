@@ -86,25 +86,15 @@ function openImageModal(e) {
 }
 
 function handleProfileFormSubmit(e) {
-  e.preventDefault();
-  if (
-    profileModalInputName.value === "" ||
-    profileModalInputDescription.value === ""
-  ) {
-    closePopup(profileModal);
-    return;
-  }
   profileName.textContent = profileModalInputName.value;
   profileDescription.textContent = profileModalInputDescription.value;
   closePopup(profileModal);
 }
 
 function submitAddModal(e) {
-  e.preventDefault();
-  if (addModalTitleInput.value === "" || addModalLinkInput.value === "") {
-    closePopup(addModal);
-    return;
-  }
+  addModal.querySelectorAll(".form__submit").forEach((submit) => {
+    submit.disabled = true;
+  });
   const cardElement = getCardElement({
     name: addModalTitleInput.value,
     link: addModalLinkInput.value,
@@ -148,9 +138,21 @@ modals.forEach((modal) => {
       closePopup(modal);
     }
   });
+  // close the modal
 });
 
 addModalForm.addEventListener("submit", submitAddModal);
+
+// close the modal on escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modals.forEach((modal) => {
+      if (modal.classList.contains("modal_opened")) {
+        modal.classList.remove("modal_opened");
+      }
+    });
+  }
+});
 
 // card
 initialCards.forEach((cardObj) => {

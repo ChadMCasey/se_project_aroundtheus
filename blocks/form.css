@@ -2,7 +2,7 @@
 .form__fieldset {
   border: none;
   padding: 0px;
-  margin: 0px 0px 48px 0px;
+  margin: 0px;
 }
 
 .form__input {
@@ -14,17 +14,30 @@
   font-size: 14px;
   font-family: "inter", Arial, sans-serif;
   display: block;
-  padding: 0px 0px 13px 0px;
+  padding: 0px 0px 10px 0px;
+  transition: border-bottom 0.2s ease-in-out;
 }
 
 .form__input::placeholder {
-  font-family: "Inter", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.2);
   font-weight: 400;
   font-size: 14px;
 }
 
-.form__input:first-child {
-  margin-bottom: 30px;
+/* container */
+.form__field {
+  display: block;
+  position: relative;
+  font-family: "Inter", Arial, sans-serif;
+  overflow: visible;
+}
+
+.form__field:first-child {
+  margin-bottom: 32px;
+}
+
+.form__input_type_error {
+  border-bottom: 1px solid #ff0000;
 }
 
 .form__submit {
@@ -39,10 +52,35 @@
   border-radius: 2px;
   transition: opacity 0.15s ease-in;
   padding: 0px;
+  margin-top: 48px;
 }
 
 .form__submit:hover {
   opacity: 0.8;
+}
+
+.form__submit:disabled {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  opacity: 0.2;
+}
+
+.form__input-error {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* position the input error relative to container */
+.form__input-error_active {
+  visibility: visible;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 5px);
+  color: #ff0000;
+  font-size: 12px;
+  opacity: 1;
 }
 
 @media screen and (width <= 633px) {

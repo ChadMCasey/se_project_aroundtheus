@@ -49,23 +49,37 @@
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
 
-        <form id="profile-form" class="form profile-form">
+        <form id="profile-form" class="form modal__form" novalidate>
           <fieldset class="form__fieldset">
-            <input
-              type="text"
-              class="form__input"
-              id="title"
-              placeholder="Username"
-              name="name"
-            />
-            <input
-              type="text"
-              class="form__input"
-              name="description"
-              placeholder="Description"
-            />
+            <!-- label wrapper to position input error span -->
+            <label class="form__field">
+              <input
+                id="name-input"
+                type="text"
+                class="form__input"
+                placeholder="Username"
+                name="name"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="form__input-error name-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input
+                id="description-input"
+                type="text"
+                class="form__input"
+                name="description"
+                placeholder="Description"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="form__input-error description-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit">Save</button>
           </fieldset>
-          <button type="submit" class="form__submit">Save</button>
           <button type="button" class="modal__close"></button>
         </form>
       </div>
@@ -74,22 +88,34 @@
     <div class="modal add-modal">
       <div class="modal__container">
         <h2 class="modal__header">New Place</h2>
-        <form class="form" id="add-form">
+        <form class="form modal__form" id="add-form" novalidate>
           <fieldset class="form__fieldset">
-            <input
-              type="text"
-              name="location"
-              class="form__input"
-              placeholder="Title"
-            />
-            <input
-              type="url"
-              name="imageURL"
-              class="form__input"
-              placeholder="Image link"
-            />
+            <label class="form__field">
+              <input
+                id="title-input"
+                type="text"
+                name="location"
+                class="form__input"
+                placeholder="Title"
+                minlength="1"
+                maxlength="30"
+                required
+              />
+              <span class="form__input-error title-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input
+                id="image-input"
+                type="url"
+                name="imageURL"
+                class="form__input"
+                placeholder="Image link"
+                required
+              />
+              <span class="form__input-error image-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit">Create</button>
           </fieldset>
-          <button type="submit" class="form__submit">Create</button>
           <button type="button" class="modal__close"></button>
         </form>
       </div>
@@ -123,5 +149,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
