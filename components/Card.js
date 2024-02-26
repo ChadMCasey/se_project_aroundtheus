@@ -39,28 +39,27 @@ export default class Card {
       this._handleImageClick(this);
     });
     this._cardTrashElement.addEventListener("click", (e) => {
-      this._handleCardInteraction(e);
+      this._handleDelete();
     });
     this._cardHeartElement.addEventListener("click", (e) => {
-      this._handleCardInteraction(e);
+      this._handleLike();
     });
   }
 
-  _handleCardInteraction(e) {
-    if (e.target === this._cardHeartElement) {
-      this._cardHeartElement.classList.toggle("card__heart_dark");
-    } else if (e.target === this._cardTrashElement) {
-      this._cardElement.remove();
-    }
+  _handleDelete() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
+  _handleLike() {
+    this._cardHeartElement.classList.toggle("card__heart_dark");
   }
 
   getCardImageElement() {
-    // getter for _handleImageClick()
     return this._cardImageElement;
   }
 
   getCardText() {
-    // getter for _handleImageClick()
     return this._cardTextElement;
   }
 }

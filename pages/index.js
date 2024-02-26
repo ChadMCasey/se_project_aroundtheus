@@ -38,8 +38,8 @@ const modals = document.querySelectorAll(".modal");
 
 // all forms
 const forms = Array.from(document.forms);
+const formObjects = {}; // we need to reset the validation for the profile edit modal when its opened.
 
-// constant values section
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -75,56 +75,16 @@ const formValidationConfig = {
   errorTextClass: "form__input-error_active",
 };
 
-function closePopup(popup) {
-  popup.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeEscapeModal);
-}
+initialCards.forEach((card) => {
+  const cardHTML = createCard(card);
+  cardsList.append(cardHTML);
+});
 
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keydown", closeEscapeModal);
-}
-
-function openEditModal(e) {
-  openPopup(profileModal);
-}
-
-function openAddModal(e) {
-  openPopup(addModal);
-}
-
-function openImageModal(card) {
-  const image = card.getCardImageElement();
-  const title = card.getCardText();
-  imageModalImg.src = "";
-  imageModalImg.src = image.src;
-  imageModalImg.alt = image.alt;
-  imageModalTitle.textContent = title.textContent;
-  openPopup(imageModal);
-}
-
-function handleProfileFormSubmit(e) {
-  profileName.textContent = profileModalInputName.value;
-  profileDescription.textContent = profileModalInputDescription.value;
-  profileModalInputName.value = "";
-  profileModalInputDescription.value = "";
-  closePopup(profileModal);
-}
-
-function submitAddModal(e) {
-  e.submitter.disabled = true;
-  const cardObj = new Card(
-    {
-      name: addModalTitleInput.value,
-      link: addModalLinkInput.value,
-    },
-    ".card-template",
-    openImageModal
-  );
-  cardsList.prepend(cardObj.generateCard());
-  e.target.reset();
-  closePopup(addModal);
-}
+forms.forEach((form) => {
+  const formObj = new FormValidator(formValidationConfig, form);
+  formObjects[form.id] = formObj; // we need to reset the profile edit modal form validation when its opened.
+  formObj.enableValidation();
+});
 
 const closeEscapeModal = (e) => {
   if (e.key === "Escape") {
@@ -147,20 +107,66 @@ modals.forEach((modal) => {
   });
 });
 
-// card class instatiation
-initialCards.forEach((card) => {
-  const cardObj = new Card(card, ".card-template", openImageModal);
-  const cardHTML = cardObj.generateCard();
-  cardsList.append(cardHTML);
-});
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeEscapeModal);
+}
 
-// form validation class instatiation
-forms.forEach((form) => {
-  const formObj = new FormValidator(formValidationConfig, form);
-  formObj.enableValidation();
-});
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
+  document.addEventListener("keydown", closeEscapeModal);
+}
 
-// modal edit
+function openEditModal(e) {
+  openPopup(profileModal);
+  formObjects[profileForm.id].resetValidation(); // reset the profile edit modal validation when opened.
+  profileModalInputName.value = profileName.textContent;
+  profileModalInputDescription.value = profileDescription.textContent;
+}
+
+function openAddModal(e) {
+  openPopup(addModal);
+}
+
+function openImageModal(card) {
+  const image = card.getCardImageElement();
+  const title = card.getCardText();
+  imageModalImg.src = "";
+  imageModalImg.src = image.src;
+  imageModalImg.alt = image.alt;
+  imageModalTitle.textContent = title.textContent;
+  openPopup(imageModal);
+}
+
+function handleProfileFormSubmit(e) {
+  profileName.textContent = profileModalInputName.value;
+  profileDescription.textContent = profileModalInputDescription.value;
+  closePopup(profileModal);
+}
+
+function createCard(item) {
+  const cardObj = new Card(
+    {
+      name: item.name,
+      link: item.link,
+    },
+    ".card-template",
+    openImageModal
+  );
+  return cardObj.generateCard();
+}
+
+function submitAddModal(e) {
+  const card = {
+    name: addModalTitleInput.value,
+    link: addModalLinkInput.value,
+  };
+  cardsList.prepend(createCard(card));
+  addModalTitleInput.value = "";
+  addModalLinkInput.value = "";
+  closePopup(addModal);
+}
+
 profileEditButton.addEventListener("click", openEditModal);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 profileAddButton.addEventListener("click", openAddModal);

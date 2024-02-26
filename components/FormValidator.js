@@ -20,7 +20,7 @@ export default class FormValidator {
   _setEventListener() {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this._resetForm();
+      this.resetValidation();
     });
     this._formInputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -28,7 +28,7 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
-    this._resetForm(); // on load disable button (the edit profile modal overrides this within index.js on line 90)
+    this.resetValidation();
   }
 
   _checkInputValidity(input) {
@@ -67,7 +67,7 @@ export default class FormValidator {
     }
   }
 
-  _resetForm() {
+  resetValidation() {
     this._formInputs.forEach((input) => {
       this._hideInputError(input);
     });

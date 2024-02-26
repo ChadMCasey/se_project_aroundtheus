@@ -114,6 +114,7 @@
   .profile {
     flex-direction: column;
     width: calc(100% - 38px);
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
   }
