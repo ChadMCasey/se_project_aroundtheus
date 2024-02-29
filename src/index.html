@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <title>Around The US</title>
   </head>
@@ -13,7 +12,7 @@
         <header class="header">
           <img
             class="header__logo"
-            src="./images/logo.svg"
+            src="<%=require('./images/logo.svg')%>"
             alt="Around The US Logo"
           />
         </header>
@@ -21,7 +20,7 @@
         <main class="main">
           <section class="profile">
             <img
-              src="./images/jacques-cousteau.jpg"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Profile Photo"
               class="profile__avatar"
             />
@@ -51,7 +50,6 @@
 
         <form id="profile-form" class="form modal__form" novalidate>
           <fieldset class="form__fieldset">
-            <!-- label wrapper to position input error span -->
             <label class="form__field">
               <input
                 id="name-input"
@@ -124,7 +122,7 @@
     <div class="modal image-modal">
       <div class="image-modal__container">
         <img
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="default_alt"
           class="image-modal__img"
         />
@@ -140,15 +138,12 @@
     <template id="card-template" class="card-template">
       <li class="card">
         <img src="./images/logo.svg" alt="default_alt" class="card__img" />
-        <img src="./images/trash.svg" class="card__trash" />
+        <img src="<%=require('./images/trash.svg')%>" class="card__trash" />
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__heart"></button>
         </div>
       </li>
     </template>
-
-    <script type="module" src="./pages/index.js"></script>
-    <script type="module" src="./components/FormValidator.js"></script>
   </body>
 </html>
