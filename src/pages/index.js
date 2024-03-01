@@ -14,15 +14,10 @@ const profileForm = document.forms["profile-form"];
 // profile
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
-// const profileName = profile.querySelector(".profile__name");
-// const profileDescription = document.querySelector(".profile__avocation");
 const profileAddButton = document.querySelector(".profile__add-button");
 
 // profile form
 const profileSaveButton = profileForm.querySelector(".form__submit");
-const profileModalInputName = profileForm.querySelector(`[name="name"]`);
-const profileModalInputDescription =
-  profileForm.querySelector(`[name="description"]`);
 
 // add modal
 const addModal = document.querySelector(".add-modal");
@@ -36,8 +31,6 @@ const cardTemplate = document.querySelector("#card-template").content;
 
 // images modal
 const imageModal = document.querySelector(".image-modal");
-const imageModalImg = imageModal.querySelector(".image-modal__img");
-const imageModalTitle = imageModal.querySelector(".image-modal__title");
 
 // all modals / popups
 const modals = document.querySelectorAll(".modal");
@@ -56,7 +49,11 @@ const userInfo = new UserInfo({
 const profileModalPopup = new PopupWithForm({
   popupSelector: ".profile-modal",
   handleSubmitFunc: (data) => {
-    handleProfileFormSubmit(data);
+    profileModalPopup.close();
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.job,
+    });
   },
 });
 
@@ -64,7 +61,13 @@ const profileModalPopup = new PopupWithForm({
 const addModalPopup = new PopupWithForm({
   popupSelector: ".add-modal",
   handleSubmitFunc: (data) => {
-    submitAddModal(data);
+    const card = {
+      name: addModalTitleInput.value,
+      link: addModalLinkInput.value,
+    };
+    const cardObj = createCard(card);
+    renderCards.addItem(cardObj);
+    addModalPopup.close();
   },
 });
 
@@ -76,11 +79,9 @@ const imageModalPopup = new PopupWithImage({
 // create cards via section class
 const renderCards = new Section(
   {
-    items: initialCards.map((card) => {
-      return createCard(card);
-    }),
+    items: initialCards,
     renderer: (item) => {
-      renderCards.addItem(item);
+      renderCards.addItem(createCard(item));
     },
   },
   ".cards__list"
@@ -96,8 +97,10 @@ function openEditModal() {
   profileModalPopup.open();
   formObjects[profileForm.id].resetValidation();
   const { name, job } = userInfo.getUserInfo();
-  profileModalInputName.value = name;
-  profileModalInputDescription.value = job;
+  profileModalPopup.setInputValues({
+    name,
+    job,
+  });
 }
 
 function openImageModal(card) {
@@ -107,14 +110,6 @@ function openImageModal(card) {
     cardName: title.textContent,
     cardLink: image.src,
   });
-}
-
-function handleProfileFormSubmit() {
-  userInfo.setUserInfo({
-    name: profileModalInputName.value,
-    job: profileModalInputDescription.value,
-  });
-  profileModalPopup.close();
 }
 
 function createCard(item) {
@@ -127,15 +122,6 @@ function createCard(item) {
     openImageModal
   );
   return cardObj.generateCard();
-}
-
-function submitAddModal(e) {
-  const card = {
-    name: addModalTitleInput.value,
-    link: addModalLinkInput.value,
-  };
-  cardsList.prepend(createCard(card));
-  addModalPopup.close();
 }
 
 profileEditButton.addEventListener("click", openEditModal);
