@@ -8,32 +8,12 @@ import "../pages/index.css";
 import { formValidationConfig, initialCards } from "../utils/constants.js";
 
 // edit modal
-const profileModal = document.querySelector(".profile-modal");
 const profileForm = document.forms["profile-form"];
 
 // profile
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const profileAddButton = document.querySelector(".profile__add-button");
-
-// profile form
-const profileSaveButton = profileForm.querySelector(".form__submit");
-
-// add modal
-const addModal = document.querySelector(".add-modal");
-const addModalForm = document.forms["add-form"];
-const addModalTitleInput = addModalForm.querySelector("[name='location']");
-const addModalLinkInput = addModalForm.querySelector("[name='imageURL");
-
-// cards
-const cardsList = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card-template").content;
-
-// images modal
-const imageModal = document.querySelector(".image-modal");
-
-// all modals / popups
-const modals = document.querySelectorAll(".modal");
 
 // all forms
 const forms = Array.from(document.forms);
@@ -62,8 +42,8 @@ const addModalPopup = new PopupWithForm({
   popupSelector: ".add-modal",
   handleSubmitFunc: (data) => {
     const card = {
-      name: addModalTitleInput.value,
-      link: addModalLinkInput.value,
+      name: data.location,
+      link: data.imageURL,
     };
     const cardObj = createCard(card);
     renderCards.addItem(cardObj);
