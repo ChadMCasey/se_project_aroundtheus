@@ -34,7 +34,8 @@ export default class Card {
     this._cardImageElement.alt = this._name;
 
     this._setEventListeners();
-    this.setIsLiked(this._isLiked);
+    this.setIsLiked(this._isLiked); // on load set isliked.
+
     return this._cardElement;
   }
 
@@ -87,7 +88,7 @@ export default class Card {
 
   setIsLiked(bool) {
     this._isLiked = bool;
-    this._isLiked
+    bool
       ? this._cardHeartElement.classList.add("card__heart_dark")
       : this._cardHeartElement.classList.remove("card__heart_dark");
   }

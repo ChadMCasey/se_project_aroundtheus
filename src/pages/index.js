@@ -25,9 +25,7 @@ const profileImageButton = document.querySelector(".profile__image-edit");
 const forms = Array.from(document.forms);
 const formObjects = {};
 
-// hold card to delete..
-// this is kind of a janky solution but i genuinely
-// could not think of anything better.
+// hold card to delete
 let cardToDelete = null;
 
 const api = new API({
@@ -49,6 +47,7 @@ const userInfo = new UserInfo({
 const profileModalPopup = new PopupWithForm({
   popupSelector: ".profile-modal",
   handleSubmitFunc: (data) => {
+    profileModalPopup.toggleSubmitText(true);
     api
       .patchProfileInformation({
         name: data.name,
@@ -60,6 +59,7 @@ const profileModalPopup = new PopupWithForm({
           name: data.name,
           job: data.job,
         });
+        profileModalPopup.toggleSubmitText(false);
       });
   },
 });
@@ -68,22 +68,22 @@ const profileModalPopup = new PopupWithForm({
 const addModalPopup = new PopupWithForm({
   popupSelector: ".add-modal",
   handleSubmitFunc: (data) => {
+    addModalPopup.toggleSubmitText(true);
     api
       .addCard({
         name: data.name,
         link: data.link,
       })
       .then((res) => {
-        // Generate card upon successful submission
         const cardObj = createCard({
           name: res.name,
           link: res.link,
           id: res._id,
           isLiked: res.isLiked,
         });
-        // render and close
         renderCards.addItem(cardObj);
         addModalPopup.close();
+        addModalPopup.toggleSubmitText(false);
       });
   },
 });
@@ -92,10 +92,11 @@ const addModalPopup = new PopupWithForm({
 const editProfileImagePopup = new PopupWithForm({
   popupSelector: ".profile-image-modal",
   handleSubmitFunc: (data) => {
+    editProfileImagePopup.toggleSubmitText(true);
     api.updateProfilePicture(data.avatar).then((res) => {
-      // set photo and close once resolved.
       userInfo.setUserPhoto(data);
       editProfileImagePopup.close();
+      editProfileImagePopup.toggleSubmitText(false);
     });
   },
 });
@@ -109,13 +110,12 @@ const imageModalPopup = new PopupWithImage({
 const deleteModalPopup = new PopupDelete({
   popupSelector: ".delete-modal",
   handleSubmitFunc: () => {
-    // pass in card id
+    deleteModalPopup.toggleSubmitText(true);
     api.deleteCard(cardToDelete.getID()).then((res) => {
-      //remove from dom
       cardToDelete.getCardElement().remove();
       cardToDelete = null;
-      // close on resolve
       deleteModalPopup.close();
+      deleteModalPopup.toggleSubmitText(false);
     });
   },
 });
@@ -128,6 +128,8 @@ forms.forEach((form) => {
   formObjects[form.id] = formObj;
   formObj.enableValidation();
 });
+
+function toggleSaving() {}
 
 function openEditModal() {
   profileModalPopup.open();
@@ -144,17 +146,6 @@ function openDeleteModal(card) {
   deleteModalPopup.open();
 }
 
-function handleCardLike(card) {
-  api
-    .likeCard({
-      cardId: card.getID(),
-      likeBool: card.getIsLiked(),
-    })
-    .then((res) => {
-      card.setIsLiked(res.isLiked);
-    });
-}
-
 function openImageModal(card) {
   const image = card.getCardImageElement();
   const title = card.getCardText();
@@ -165,7 +156,6 @@ function openImageModal(card) {
 }
 
 function createCard(item) {
-  // console.log(item);
   const cardObj = new Card(
     {
       name: item.name,
@@ -181,23 +171,20 @@ function createCard(item) {
   return cardObj.generateCard();
 }
 
-profileEditButton.addEventListener("click", openEditModal);
-profileAddButton.addEventListener("click", () => {
-  addModalPopup.open();
-});
-profileImageButton.addEventListener("click", () => {
-  editProfileImagePopup.open();
-});
+function handleCardLike(card) {
+  api
+    .likeCard({
+      cardId: card.getID(),
+      likeBool: card.getIsLiked(),
+    })
+    .then((res) => {
+      card.setIsLiked(res.isLiked);
+    });
+}
 
-addModalPopup.setEventListeners();
-imageModalPopup.setEventListeners();
-deleteModalPopup.setEventListeners();
-profileModalPopup.setEventListeners();
-editProfileImagePopup.setEventListeners();
-
-// on load make sure to render preexisting cards
+// on load render preexisting cards
 api.renderCardsValidator().then((res) => {
-  // we need to sort the cards on the creation date date before we render them to the user.
+  // sort the cards on the creation date date before we render them.
   const sortedCards = res[0].sort((a, b) => {
     return new Date(a.createdAt) - new Date(b.createdAt);
   });
@@ -212,7 +199,7 @@ api.renderCardsValidator().then((res) => {
   });
 });
 
-// on load set the user information
+// on load set user information
 api.getUserInformation().then((res) => {
   userInfo.setUserInfo({
     name: res.name,
@@ -222,3 +209,17 @@ api.getUserInformation().then((res) => {
     avatar: res.avatar,
   });
 });
+
+profileEditButton.addEventListener("click", openEditModal);
+profileAddButton.addEventListener("click", () => {
+  addModalPopup.open();
+});
+profileImageButton.addEventListener("click", () => {
+  editProfileImagePopup.open();
+});
+
+addModalPopup.setEventListeners();
+imageModalPopup.setEventListeners();
+deleteModalPopup.setEventListeners();
+profileModalPopup.setEventListeners();
+editProfileImagePopup.setEventListeners();

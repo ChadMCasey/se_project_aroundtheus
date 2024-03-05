@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
     this._handleSubmit = handleSubmitFunc;
     this._popUpForm = this._popup.querySelector(".form");
     this._inputList = this._popup.querySelectorAll(".form__input");
+    this._popupSubmit = this._popup.querySelector(".modal__submit");
+    this._popupSumbitText = this._popupSubmit.textContent;
   }
 
   _getInputValues() {
@@ -27,5 +29,9 @@ export default class PopupWithForm extends Popup {
       this._popUpForm.reset();
     });
     super.setEventListeners();
+  }
+
+  toggleSubmitText(bool) {
+    this._popupSubmit.textContent = bool ? "Saving..." : this._popupSumbitText;
   }
 }
