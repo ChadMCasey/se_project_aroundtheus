@@ -7,16 +7,16 @@
 }
 
 .profile__avatar {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  max-width: 120px;
-  max-height: 120px;
-  margin-right: 30px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
 }
 
 .profile__info {
   margin: 0px;
+  margin-left: 30px;
 }
 
 .profile__name-edit-section {
@@ -89,6 +89,36 @@
   opacity: 0.6;
 }
 
+.profile__image-container {
+  position: relative;
+}
+
+.profile__image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  /* center edit icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__image-edit {
+  width: 26px;
+  height: 26px;
+}
+
+.profile__image-overlay:hover {
+  opacity: 1;
+}
+
 /* if you hav */
 @media screen and (634px <= width <= 932px) {
   .profile__name {
@@ -118,7 +148,12 @@
     margin-left: auto;
     margin-right: auto;
   }
-
+  .profile__info {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .profile__name-edit-section {
     margin-bottom: 14px;
   }

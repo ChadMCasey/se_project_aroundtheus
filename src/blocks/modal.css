@@ -57,6 +57,32 @@
   opacity: 0.6;
 }
 
+.modal__submit {
+  height: 50px;
+  width: 100%;
+  border: none;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  font-weight: 400;
+  border-radius: 2px;
+  transition: opacity 0.15s ease-in;
+  padding: 0px;
+  margin-top: 48px;
+}
+
+.modal__submit:hover {
+  opacity: 0.8;
+}
+
+.modal__submit:disabled {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  opacity: 0.2;
+}
+
 @media screen and (width <= 633px) {
   .modal__header {
     font-size: 18px;
@@ -70,5 +96,8 @@
     right: 5px;
     height: 26px;
     width: 26px;
+  }
+  .modal__submit {
+    font-size: 14px;
   }
 }

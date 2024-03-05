@@ -40,32 +40,6 @@
   border-bottom: 1px solid #ff0000;
 }
 
-.form__submit {
-  height: 50px;
-  width: 100%;
-  border: none;
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 18px;
-  background-color: black;
-  color: white;
-  font-weight: 400;
-  border-radius: 2px;
-  transition: opacity 0.15s ease-in;
-  padding: 0px;
-  margin-top: 48px;
-}
-
-.form__submit:hover {
-  opacity: 0.8;
-}
-
-.form__submit:disabled {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  opacity: 0.2;
-}
-
 .form__input-error {
   visibility: hidden;
   opacity: 0;
@@ -89,8 +63,5 @@
   }
   .form__fieldset {
     margin-bottom: 48px;
-  }
-  .form__submit {
-    font-size: 14px;
   }
 }

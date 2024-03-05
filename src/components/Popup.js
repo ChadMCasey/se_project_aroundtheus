@@ -16,8 +16,6 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  // still trying to understand why "this" works in this context,
-  // with an arrow function.
   _handleEscClose = (e) => {
     e.key === "Escape" && this.close();
   };
