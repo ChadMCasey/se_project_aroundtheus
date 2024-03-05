@@ -4,7 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import PopupDelete from "../components/PopupDelete.js";
+import PopupDelete from "../components/PopupWithConfirmation.js";
 
 import API from "../components/API.js";
 import "../pages/index.css";
