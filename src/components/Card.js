@@ -1,9 +1,19 @@
 export default class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    openDeleteModal,
+    handleCardLike
+  ) {
     this._name = data.name;
     this._link = data.link;
+    this._id = data.id;
+    this._isLiked = data.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleCardLike = handleCardLike;
+    this._openDeleteModal = openDeleteModal;
 
     this._cardElement = null;
     this._cardImageElement = null;
@@ -24,6 +34,8 @@ export default class Card {
     this._cardImageElement.alt = this._name;
 
     this._setEventListeners();
+    this.setIsLiked(this._isLiked); // on load set isliked.
+
     return this._cardElement;
   }
 
@@ -39,20 +51,19 @@ export default class Card {
       this._handleImageClick(this);
     });
     this._cardTrashElement.addEventListener("click", (e) => {
-      this._handleDelete();
+      this._handleDelete(e);
     });
     this._cardHeartElement.addEventListener("click", (e) => {
-      this._handleLike();
+      this._handleLike(e);
     });
   }
 
-  _handleDelete() {
-    this._cardElement.remove();
-    this._cardElement = null;
+  _handleDelete(e) {
+    this._openDeleteModal(this);
   }
 
-  _handleLike() {
-    this._cardHeartElement.classList.toggle("card__heart_dark");
+  _handleLike(e) {
+    this._handleCardLike(this);
   }
 
   getCardImageElement() {
@@ -61,5 +72,24 @@ export default class Card {
 
   getCardText() {
     return this._cardTextElement;
+  }
+
+  getID() {
+    return this._id;
+  }
+
+  getCardElement() {
+    return this._cardElement;
+  }
+
+  getIsLiked() {
+    return this._isLiked;
+  }
+
+  setIsLiked(bool) {
+    this._isLiked = bool;
+    bool
+      ? this._cardHeartElement.classList.add("card__heart_dark")
+      : this._cardHeartElement.classList.remove("card__heart_dark");
   }
 }

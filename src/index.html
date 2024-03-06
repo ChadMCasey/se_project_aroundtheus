@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
     <title>Around The US</title>
   </head>
   <body>
@@ -19,11 +19,21 @@
 
         <main class="main">
           <section class="profile">
-            <img
-              src="<%=require('./images/jacques-cousteau.jpg')%>"
-              alt="Profile Photo"
-              class="profile__avatar"
-            />
+            <div class="profile__image-container">
+              <img
+                src="<%=require('./images/jacques-cousteau.jpg')%>"
+                alt="Profile Photo"
+                class="profile__avatar"
+              />
+              <div class="profile__image-overlay">
+                <img
+                  src="<%=require('./images/edit-image.svg')%>"
+                  alt="Edit Profile Image Icon"
+                  class="profile__image-edit"
+                />
+              </div>
+            </div>
+
             <div class="profile__info">
               <div class="profile__name-edit-section">
                 <h1 class="profile__name">Jacques Cousteau</h1>
@@ -48,7 +58,7 @@
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
 
-        <form id="profile-form" class="form modal__form" novalidate>
+        <form id="profile-form" class="form" novalidate>
           <fieldset class="form__fieldset">
             <label class="form__field">
               <input
@@ -76,8 +86,8 @@
               />
               <span class="form__input-error description-input-error"></span>
             </label>
-            <button type="submit" class="form__submit">Save</button>
           </fieldset>
+          <button type="submit" class="form__submit modal__submit">Save</button>
           <button type="button" class="modal__close"></button>
         </form>
       </div>
@@ -86,13 +96,13 @@
     <div class="modal add-modal">
       <div class="modal__container">
         <h2 class="modal__header">New Place</h2>
-        <form class="form modal__form add-form" id="add-form" novalidate>
+        <form class="form add-form" id="add-form" novalidate>
           <fieldset class="form__fieldset">
             <label class="form__field">
               <input
                 id="title-input"
                 type="text"
-                name="location"
+                name="name"
                 class="form__input"
                 placeholder="Title"
                 minlength="1"
@@ -105,15 +115,54 @@
               <input
                 id="image-input"
                 type="url"
-                name="imageURL"
+                name="link"
                 class="form__input"
                 placeholder="Image link"
                 required
               />
               <span class="form__input-error image-input-error"></span>
             </label>
-            <button type="submit" class="form__submit">Create</button>
           </fieldset>
+          <button type="submit" class="form__submit modal__submit">
+            Create
+          </button>
+          <button type="button" class="modal__close"></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- modal for removing a deleted card -->
+    <div class="modal delete-modal">
+      <div class="modal__container">
+        <h2 class="modal__header">Are You Sure?</h2>
+        <button class="modal__submit">Save</button>
+        <button class="modal__close"></button>
+      </div>
+    </div>
+
+    <!-- modal for editing the profile image -->
+    <div class="modal profile-image-modal">
+      <div class="modal__container">
+        <div class="modal__header">Change profile picture</div>
+        <form
+          id="profile-image-form"
+          class="form profile-image-form"
+          novalidate
+        >
+          <fieldset class="form__fieldset">
+            <label class="form__field">
+              <input
+                type="url"
+                id="profile-image-input"
+                class="form__input"
+                name="avatar"
+                placeholder="Image URL"
+                required
+              />
+              <span class="form__input-error profile-image-input-error"></span>
+            </label>
+          </fieldset>
+          <button class="form__submit modal__submit">Save</button>
           <button type="button" class="modal__close"></button>
         </form>
       </div>
