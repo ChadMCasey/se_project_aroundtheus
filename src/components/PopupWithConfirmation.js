@@ -5,8 +5,7 @@ export default class PopupDelete extends Popup {
     super(popupSelector);
     this._handleSubmit = handleSubmitFunc;
     this._submitDelete = this._popup.querySelector(".modal__submit");
-    this._popupSubmit = this._popup.querySelector(".modal__submit");
-    this._popupSumbitText = this._popupSubmit.textContent;
+    this._submitDeleteText = this._submitDelete.textContent;
   }
 
   setEventListeners() {
@@ -16,8 +15,11 @@ export default class PopupDelete extends Popup {
     super.setEventListeners();
   }
 
-  // not all popups have submits (so i couldnt put this in the parent class)
-  toggleSubmitText(bool) {
-    this._popupSubmit.textContent = bool ? "Saving..." : this._popupSumbitText;
+  renderLoading({ isLoading, loadingText = "Deleting..." }) {
+    if (isLoading) {
+      this._submitDelete.textContent = loadingText;
+    } else {
+      this._submitDelete.textContent = this._submitDeleteText;
+    }
   }
 }

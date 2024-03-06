@@ -47,7 +47,7 @@ const userInfo = new UserInfo({
 const profileModalPopup = new PopupWithForm({
   popupSelector: ".profile-modal",
   handleSubmitFunc: (data) => {
-    profileModalPopup.toggleSubmitText(true);
+    profileModalPopup.renderLoading({ isLoading: true });
     api
       .patchProfileInformation({
         name: data.name,
@@ -59,7 +59,13 @@ const profileModalPopup = new PopupWithForm({
           name: data.name,
           job: data.job,
         });
-        profileModalPopup.toggleSubmitText(false);
+        profileModalPopup.getForm().reset();
+      })
+      .catch((err) => {
+        console.error(`Patch Profile Error: ${err.status}`);
+      })
+      .finally(() => {
+        profileModalPopup.renderLoading({ isLoading: false });
       });
   },
 });
@@ -68,7 +74,7 @@ const profileModalPopup = new PopupWithForm({
 const addModalPopup = new PopupWithForm({
   popupSelector: ".add-modal",
   handleSubmitFunc: (data) => {
-    addModalPopup.toggleSubmitText(true);
+    addModalPopup.renderLoading({ isLoading: true });
     api
       .addCard({
         name: data.name,
@@ -83,7 +89,13 @@ const addModalPopup = new PopupWithForm({
         });
         renderCards.addItem(cardObj);
         addModalPopup.close();
-        addModalPopup.toggleSubmitText(false);
+        addModalPopup.getForm().reset();
+      })
+      .catch((err) => {
+        console.error(`Create Card Error: ${err.status}`);
+      })
+      .finally(() => {
+        addModalPopup.renderLoading({ isLoading: false });
       });
   },
 });
@@ -92,12 +104,20 @@ const addModalPopup = new PopupWithForm({
 const editProfileImagePopup = new PopupWithForm({
   popupSelector: ".profile-image-modal",
   handleSubmitFunc: (data) => {
-    editProfileImagePopup.toggleSubmitText(true);
-    api.updateProfilePicture(data.avatar).then((res) => {
-      userInfo.setUserPhoto(data);
-      editProfileImagePopup.close();
-      editProfileImagePopup.toggleSubmitText(false);
-    });
+    editProfileImagePopup.renderLoading({ isLoading: true });
+    api
+      .updateProfilePicture(data.avatar)
+      .then((res) => {
+        userInfo.setUserPhoto(data);
+        editProfileImagePopup.close();
+        editProfileImagePopup.getForm().reset();
+      })
+      .catch((err) => {
+        console.error(`Edit Profile Image Error: ${err.status}`);
+      })
+      .finally(() => {
+        editProfileImagePopup.renderLoading({ isLoading: false });
+      });
   },
 });
 
@@ -110,13 +130,20 @@ const imageModalPopup = new PopupWithImage({
 const deleteModalPopup = new PopupDelete({
   popupSelector: ".delete-modal",
   handleSubmitFunc: () => {
-    deleteModalPopup.toggleSubmitText(true);
-    api.deleteCard(cardToDelete.getID()).then((res) => {
-      cardToDelete.getCardElement().remove();
-      cardToDelete = null;
-      deleteModalPopup.close();
-      deleteModalPopup.toggleSubmitText(false);
-    });
+    deleteModalPopup.renderLoading({ isLoading: true });
+    api
+      .deleteCard(cardToDelete.getID())
+      .then((res) => {
+        cardToDelete.getCardElement().remove();
+        cardToDelete = null;
+        deleteModalPopup.close();
+      })
+      .catch((err) => {
+        console.error(`Delete Card Error: ${err.status}`);
+      })
+      .finally(() => {
+        deleteModalPopup.renderLoading({ isLoading: false });
+      });
   },
 });
 
@@ -128,8 +155,6 @@ forms.forEach((form) => {
   formObjects[form.id] = formObj;
   formObj.enableValidation();
 });
-
-function toggleSaving() {}
 
 function openEditModal() {
   profileModalPopup.open();
@@ -182,33 +207,34 @@ function handleCardLike(card) {
     });
 }
 
-// on load render preexisting cards
-api.renderCardsValidator().then((res) => {
-  // sort the cards on the creation date date before we render them.
-  const sortedCards = res[0].sort((a, b) => {
-    return new Date(a.createdAt) - new Date(b.createdAt);
-  });
-  sortedCards.forEach((card) => {
-    const cardObj = createCard({
-      name: card.name,
-      link: card.link,
-      id: card._id,
-      isLiked: card.isLiked,
+// on load render preexisting data
+api
+  .getAppInfo()
+  .then(([cards, userData]) => {
+    const sortedCards = cards.sort((a, b) => {
+      return new Date(a.createdAt) - new Date(b.createdAt);
     });
-    renderCards.addItem(cardObj);
-  });
-});
+    sortedCards.forEach((card) => {
+      const cardObj = createCard({
+        name: card.name,
+        link: card.link,
+        id: card._id,
+        isLiked: card.isLiked,
+      });
+      renderCards.addItem(cardObj);
+    });
 
-// on load set user information
-api.getUserInformation().then((res) => {
-  userInfo.setUserInfo({
-    name: res.name,
-    job: res.about,
+    userInfo.setUserInfo({
+      name: userData.name,
+      job: userData.about,
+    });
+    userInfo.setUserPhoto({
+      avatar: userData.avatar,
+    });
+  })
+  .catch((err) => {
+    console.error(`Load Intial Data Error: ${err.status}`);
   });
-  userInfo.setUserPhoto({
-    avatar: res.avatar,
-  });
-});
 
 profileEditButton.addEventListener("click", openEditModal);
 profileAddButton.addEventListener("click", () => {
