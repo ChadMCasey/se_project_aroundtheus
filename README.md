@@ -1,6 +1,6 @@
 # Project 3: Around The U.S.
 
-### Technologies Used
+### Used To Create Around The U.S.
 
 - HTML
 - CSS
