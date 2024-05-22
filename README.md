@@ -18,12 +18,13 @@ Around the US is a web application designed to allow users to create profiles, a
 
 ## A Quick View of The Project
 
-![A Gif Demonstrating the use of the website](https://github.com/ChadMCasey/se_project_aroundtheus/blob/main/project3Overview.gif)
+
+![Demonstration](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3R3ams2ZmloNWFneDY4cWQ2dHMwcWk0NTNieTE1YjcwZDIyazZ6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/il4BIVlb8e7CyZCvG3/giphy.gif)
 
 ## Link To The Live Site 
 
 https://chadmcasey.github.io/se_project_aroundtheus/
 
-## Link to The Project Overview!
+## Link to The Project Overview
 
 https://drive.google.com/file/d/1WVgG8zwiUu_s00IV-1Zedosyq3fQbPkQ/view?usp=sharing
