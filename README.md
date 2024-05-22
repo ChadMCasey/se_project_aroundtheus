@@ -6,10 +6,11 @@
 - CSS
 - Figma
 - Responsive Design
+- Asynchronous JS
 
 **Project Description**
 
-Around the US is a web application designed to allow users to create profiles, add photos, and share places they have visited across the US with others. The goal of this project was to practice the fundamental skills needed to create responsive designs. For example, auto-fitting grids and flex boxes that alternate their flex-directions when presented with different screen sizes. Moreover, this project gave me exposure to JavaScript class representations of components within the webpage. I also learned about best practices when it comes to class reusability. Outside of this, learning about HTML template elements was productive & interesting. The site has been optimized for two screen widths, 1280px & 320px, but the responsive design should keep the UI looking clean across different screen resolutions.
+Around the US is a web application designed to allow users to create profiles, add photos, and share places they have visited across the US with others. The goal of this project was to practice the fundamental skills needed to create responsive designs. For example, auto-fitting grids and flex boxes that alternate their flex-directions when presented with different screen sizes. Moreover, this project refined my understanding of how to represent webpage components as classes in JS, best practices when it comes to class reusability,  handling object interactions in JS, HTML template elements, callback applications in web development, fetch request, response handling, error handling, data validation, and more! The site has been optimized for two screen widths, 1280px & 320px, but the responsive design should keep the UI looking clean across different screen resolutions.
 
 **Figma Design Template**
 
