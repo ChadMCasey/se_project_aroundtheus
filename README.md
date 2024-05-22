@@ -9,7 +9,7 @@
 
 **Project Description**
 
-Around the US is a web application designed to allow users to create profiles, add photos, and share places they have visited across the US with others. The goal of this project was to practice the fundamental skills needed to create responsive designs. For example, auto-fitting grids and flex boxes that alternate their flex-directions when presented with different screen sizes. The site has been optimized for two screen widths, 1280px & 320px, but the responsive design should keep the UI looking elegant across the screen sizes between these two values.
+Around the US is a web application designed to allow users to create profiles, add photos, and share places they have visited across the US with others. The goal of this project was to practice the fundamental skills needed to create responsive designs. For example, auto-fitting grids and flex boxes that alternate their flex-directions when presented with different screen sizes. Moreover, this project gave me exposure to JavaScript class representations of components within the webpage. I also learned about best practices when it comes to class reusability across projects. Outside of this, learning about html template elements was productive and interesting as well. The site has been optimized for two screen widths, 1280px & 320px, but the responsive design should keep the UI looking clean across different screen resolutions.
 
 **Figma Design Template**
 
