@@ -16,8 +16,7 @@ Around the US is a web application designed to allow users to create profiles, a
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-## A Quick View of The Project
-
+## Demonstration
 
 ![Demonstration](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3R3ams2ZmloNWFneDY4cWQ2dHMwcWk0NTNieTE1YjcwZDIyazZ6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/il4BIVlb8e7CyZCvG3/giphy.gif)
 
